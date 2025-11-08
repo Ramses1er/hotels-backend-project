@@ -1,0 +1,21 @@
+{
+  "name": "hotels-backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/bun": "latest",
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dev": "types/express",
+    "drizzle-orm": "^0.44.7",
+    "express": "^5.1.0"
+  }
+}
