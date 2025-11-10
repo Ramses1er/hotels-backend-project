@@ -10,5 +10,6 @@ export interface EntityArrondissementRepository {
   findAll(): Promise<EntityArrondissementInterface[]>;
   update(arrondissement: EntityArrondissementInterface): Promise<EntityArrondissementInterface>;
   delete(id: string): Promise<void>;
+  findById(id: string): Promise<EntityArrondissementInterface | null>;
   findByName(name: string): Promise<EntityArrondissementInterface | null>;
 }

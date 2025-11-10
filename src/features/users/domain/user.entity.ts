@@ -1,8 +1,14 @@
 export interface UserEntityInterface {
   id: string;
   email: string;
+  role: string | null;
   password: string;
   createdAt: Date;
+  updatedAt: Date | null;
+}
+
+export interface LoginOutput {
+  token: string;
 }
 
 export interface UserEntityRepository {
