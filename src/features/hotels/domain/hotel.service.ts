@@ -15,6 +15,7 @@ export class HotelService {
     this.repo = repo;
   }
 
+  // fonction pour creer un hotel
   async createHotel(hotel: createHotelInput): Promise<EntityHotelInterface> {
     const existingHotel = await this.repo.findByName(hotel.name);
 

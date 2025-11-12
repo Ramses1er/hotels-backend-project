@@ -4,7 +4,7 @@ import type {
 } from "./quartier.entity";
 
 interface InputQuartier {
-  nom: string;
+  name: string;
 }
 
 export class QuartierService {
@@ -14,10 +14,11 @@ export class QuartierService {
     this.repo = repo;
   }
 
+  // fonction pour creer un quartier
   async createQuartier(
     quartier: InputQuartier
   ): Promise<EntityQuartierInterface> {
-    const existingQuartier = await this.repo.findByName(quartier.nom);
+    const existingQuartier = await this.repo.findByName(quartier.name);
 
     if (existingQuartier != null) {
       throw new Error("Quartier déjà existant");
@@ -25,7 +26,7 @@ export class QuartierService {
 
     const newQuartier: EntityQuartierInterface = {
       id: crypto.randomUUID(),
-      name: quartier.nom,
+      name: quartier.name,
       createdAt: new Date(),
       updatedAt: null,
     };

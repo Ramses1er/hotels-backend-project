@@ -45,11 +45,14 @@ export class FavoriteService {
   }
 
   // fonction pour retourner tous les favoris d'un seul utilisateur
-  async getAllFavoritesByUserId(userId: string): Promise<FavoriteEntityInterface[]> {
+  async getAllFavoritesByUserId(
+    userId: string
+  ): Promise<FavoriteEntityInterface[]> {
     const favorites = await this.repo.findAllByUserId(userId);
     if (!favorites) {
       throw new Error("Aucun favorite trouve");
     }
     return favorites;
   }
+
 }

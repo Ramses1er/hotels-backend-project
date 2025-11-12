@@ -62,12 +62,15 @@ export class UserService {
     password: string
   ): Promise<LoginOutput | null> {
     const user = await this.repo.findByEmail(email);
+
     if (!user) {
       return null;
     }
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
+
     if (isPasswordValid) {
-      const token = createJwtToken(user.id, user.email, user.role);
+      const token = createJwtToken(user.id, user.email, user.role!);
       return { token };
     } else {
       return null;
@@ -76,16 +79,39 @@ export class UserService {
 
   // function pour retourner tous les utilisateurs
   async getAllUsers(): Promise<UserEntityInterface[]> {
-    return await this.repo.findAll();
+    const users = await this.repo.findAll();
+
+    if (!users) {
+      throw new Error("Aucun utilisateur trouve");
+    }
+
+    return users;
   }
 
   // function pour retourner un utilisateur par son id
   async getUserById(id: string): Promise<UserEntityInterface | null> {
-    return await this.repo.findById(id);
+    const user = await this.repo.findById(id);
+    if (!user) {
+      return null;
+    }
+    return user;
   }
 
   // function pour mettre a jour un utilisateur
   async updateUser(user: UserEntityInterface): Promise<UserEntityInterface> {
+    const existingUser = await this.repo.findById(user.id);
+    if (!existingUser) {
+      throw new Error("Utilisateur introuvable");
+    }
     return await this.repo.update(user);
+  }
+
+  // function pour trouver un utilisateur par son email
+  async findByEmail(email: string): Promise<UserEntityInterface | null> {
+    const user = await this.repo.findByEmail(email);
+    if (!user) {
+      return null;
+    }
+    return user;
   }
 }
