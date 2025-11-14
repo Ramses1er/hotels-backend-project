@@ -9,5 +9,5 @@ export const hotels = pgTable("hotels", {
   }),
   description: text("description").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at"),
 });

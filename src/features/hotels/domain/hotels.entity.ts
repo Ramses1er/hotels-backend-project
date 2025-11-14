@@ -8,7 +8,7 @@ export interface EntityHotelInterface {
 
 export interface EntityHotelRepository {
   create(hotel: EntityHotelInterface): Promise<EntityHotelInterface>;
-  findAll(): Promise<EntityHotelInterface[]>;
+  findAll(): Promise<EntityHotelInterface[] | null>;
   findById(id: string): Promise<EntityHotelInterface | null>;
   update(hotel: EntityHotelInterface): Promise<EntityHotelInterface>;
   delete(id: string): Promise<void>;
